@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat privé</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="start" id="start">
+      <button id="creer">Créer un chat</button>
+      <input id="clé" placeholder="Entrer une clé...">
+      <button id="rejoindre">Rejoindre</button>
+    </div>
+    <div class="chat" id="chat" style="display:none;">
+      <div id="cle-info"></div>
+      <div id="messages"></div>
+      <input id="msg" placeholder="Votre message">
+      <button id="envoyer">Envoyer</button>
+    </div>
+  </div>
+
+  <script>
+    const socket = io();
+
+    const start = document.getElementById('start');
+    const chat = document.getElementById('chat');
+    const cleInfo = document.getElementById('cle-info');
+    const messages = document.getElementById('messages');
+    const msg = document.getElementById('msg');
+
+    document.getElementById('creer').onclick = () => {
+      socket.emit('createChat');
+    };
+
+    document.getElementById('rejoindre').onclick = () => {
+      const clé = document.getElementById('clé').value;
+      socket.emit('joinChat', clé);
+    };
+
+    socket.on('chatCreated', (clé) => {
+      start.style.display = 'none';
+      chat.style.display = 'flex';
+      cleInfo.textContent = `Votre clé : ${clé}`;
+    });
+
+    socket.on('chatJoined', (clé) => {
+      start.style.display = 'none';
+      chat.style.display = 'flex';
+      cleInfo.textContent = `Connecté au chat : ${clé}`;
+    });
+
+    socket.on('message', (texte) => {
+      const div = document.createElement('div');
+      div.textContent = texte;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    });
+
+    socket.on('errorMessage', (msg) => {
+      alert(msg);
+    });
+
+    document.getElementById('envoyer').onclick = () => {
+      if (msg.value.trim()) {
+        socket.emit('message', msg.value);
+        msg.value = '';
+      }
+    };
+  </script>
+</body>
+</html>
+

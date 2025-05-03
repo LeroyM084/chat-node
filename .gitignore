@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+.env
+
+# Logs
+logs/
+*.log
+
+# VSCode
+.vscode/
+.history/
+
+# OS
+.DS_Store
+Thumbs.db
+

@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #ccc;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#messages {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+  margin: 10px 0;
+}
+
+input, button {
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 16px;
+  width: 100%;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+}
+
