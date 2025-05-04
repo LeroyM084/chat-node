@@ -3,7 +3,7 @@
 
 Un chat en direct, anonyme et seulement avec 2 clients simultanées sur le même chat. Supporte la gestion des images. 
 Aucun message ni client enregistrés. 
-J'ai fait ce projet pour découvrir les bases de Node.js et de Socket.io 
+J'ai fait ce projet pour découvrir les bases de Node.js et de Socket.io. C'est un projet très basique et à but seulement éducatif. 
 
 
 
